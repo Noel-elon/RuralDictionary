@@ -1,6 +1,10 @@
 package com.example.ruraldictionary.Repository
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.ruraldictionary.Models.WordResponse
 import com.example.ruraldictionary.Network.RetrofitBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -9,20 +13,19 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import okhttp3.Dispatcher
 
-class Repository {
-    private var myJob: Job? = null
-    private var viewModelJob = Job()
-    private var scope = CoroutineScope(viewModelJob + Dispatchers.IO)
+class Repository : ViewModel() {
+    val wordList = MutableLiveData<WordResponse>()
 
+    fun getWordList() {
+        viewModelScope.launch(Dispatchers.Default) {
 
-    fun getWordObject(): String {
-
-        myJob = scope.launch {
-            var getWords = RetrofitBuilder.createApiService().getWordproperties("wat")
-
+            try {
+                wordList.postValue(RetrofitBuilder.createApiService().getWordproperties("wat"))
+            }catch (e : Exception){
+                Log.d("Exception:", e.message.toString())
+            }
 
         }
-        return myJob.toString()
 
     }
 

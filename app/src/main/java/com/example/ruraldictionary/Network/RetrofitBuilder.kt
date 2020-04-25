@@ -6,13 +6,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
 object RetrofitBuilder {
-    fun retrofitBuilder(): RetrofitBuilder {
+    fun createApiService(): WordAPIservice {
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
             .build()
 
-        return retrofit.create()
+        return retrofit.create(WordAPIservice::class.java)
     }
 
 

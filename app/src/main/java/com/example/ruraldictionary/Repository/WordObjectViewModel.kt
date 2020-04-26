@@ -13,7 +13,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import okhttp3.Dispatcher
 
-class Repository : ViewModel() {
+class WordObjectViewModel : ViewModel() {
     val wordList = MutableLiveData<WordResponse>()
 
     fun getWordList() {

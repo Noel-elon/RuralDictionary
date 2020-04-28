@@ -11,8 +11,8 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface WordAPIservice {
-    @Headers("X-RapidAPI-Key: $API_KEY", "x-rapidapi-host: $BASE_URL")
 
+    @Headers("x-rapidapi-key: $API_KEY")
     @GET("define")
-    suspend fun getWordproperties(@Query("query") word: String): WordResponse
+    suspend fun getWordproperties(@Query("term") word: String): WordResponse
 }

@@ -1,7 +1,9 @@
 package com.example.ruraldictionary.Models
 
+import com.google.gson.annotations.SerializedName
+
 data class WordResponse(
-    val id: Int,
-    val wordObjectlist: List<WordObject>
+    @SerializedName("list")
+    val wordList: List<WordObject>
 
 )

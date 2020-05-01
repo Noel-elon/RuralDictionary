@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var repository: WordObjectViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,11 +17,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        repository = ViewModelProvider(this).get(WordObjectViewModel::class.java)
-        repository.getWordList()
-        repository.wordList.observe(this, Observer {
-            textview.text = it.toString()
-        })
 
 
     }

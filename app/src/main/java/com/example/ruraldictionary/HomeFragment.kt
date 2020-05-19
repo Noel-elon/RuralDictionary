@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
         repository = ViewModelProvider(this).get(WordObjectViewModel::class.java)
         repository.getWordList()
         repository.wordList.observe(this, Observer {
-            textView.text = it.toString()
+            //textView.text = it.toString()
         })
 
         // Inflate the layout for this fragment

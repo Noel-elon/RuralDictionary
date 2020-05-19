@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.ruraldictionary.Repository.WordObjectViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
 
         val bottomnav = bottomNav.setOnNavigationItemSelectedListener { item ->
@@ -29,9 +31,8 @@ class MainActivity : AppCompatActivity() {
 
             }
             false
-
         }
-      //  bottomNav.setOnNavigationItemSelectedListener(bottomnav)
+
 
 
     }

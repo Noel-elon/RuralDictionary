@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.ruraldictionary.Adapters.ViewPagerAdapter
 import com.example.ruraldictionary.Repository.WordObjectViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,23 +18,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val fragmentAdapter = ViewPagerAdapter(supportFragmentManager)
+        viewPager.adapter = fragmentAdapter
 
+        tabLayout.setupWithViewPager(viewPager)
 
-        val bottomnav = bottomNav.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_home -> {
-                    return@setOnNavigationItemSelectedListener true
-                }
-
-                R.id.navigation_fav -> {
-                    return@setOnNavigationItemSelectedListener true
-                }
-
-            }
-            false
-        }
-
-
+        tabLayout.getTabAt(0)?.setIcon(R.drawable.ic_home_black_24dp)
+        tabLayout.getTabAt(1)?.setIcon(R.drawable.ic_favorite_black_24dp)
 
     }
 

@@ -19,21 +19,44 @@ import retrofit2.Response
 
 class WordObjectViewModel : ViewModel() {
     val wordList = MutableLiveData<WordObject>()
+    lateinit var definitions: ArrayList<String>
+    lateinit var examples: ArrayList<String>
+    private lateinit var wordArray: ArrayList<WordObject>
+
 
     fun getWordList() {
         viewModelScope.launch(Dispatchers.Default) {
             try {
                 val callResponse = RetrofitBuilder.createApiService().getWordproperties("Noel")
-                val res : WordResponse = callResponse
-                val obj : WordObject = res.wordList[1]
-                Log.d("Success: ", "I got to this place")
-                 wordList.postValue(obj)
+                val res: WordResponse = callResponse
+
+                for (word in res.wordList) {
+
+                    val obj: WordObject = word
+                    Log.d("Success: ", "I got to this place")
+                    wordList.postValue(obj)
+                    wordArray.add(obj)
+
+                }
             } catch (e: Exception) {
                 Log.d("Exception:", e.message.toString())
             }
 
         }
     }
+
+    fun getDefinitions() {
+        for (word in wordArray) {
+            definitions.add(word.definition)
+        }
+    }
+
+    fun getExamples() {
+        for (word in wordArray) {
+            examples.add(word.example)
+        }
+    }
+
 
 }
 
